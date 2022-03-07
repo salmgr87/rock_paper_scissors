@@ -9,3 +9,23 @@ function computerPlay() {
     console.log(moves[computerMove]);
 }
 
+/*
+playRound will play one round.
+It needs to call computerPlay()
+It needs to ask the player for their move.
+Then compares the two, and declares a winner.
+If the round is a tie, then it runs computerPlay() and asks the player again
+*/
+
+function playRound() {
+    
+    
+   do {
+        computerMove = compterPlay();
+        console.log(computerMove);
+        humanMove = prompt("Rock, paper, or scissors?")
+    }
+   while (humanMove === computerMove)
+}
+
+playRound()

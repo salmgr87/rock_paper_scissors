@@ -24,14 +24,14 @@ function playRound() {
     let humanMove = prompt("Rock, paper, or scissors?");
     console.log(humanMove);
     
-    if (computerMove === humanMove){
+    if (computerMove.toLowerCase() === humanMove.toLowerCase()){
         do {
             computerMove = computerPlay();
             console.log(computerMove);
             humanMove = prompt("Rock, paper, or scissors?");
         }
-        while (computerMove === humanMove);
-    }
+        while (computerMove.toLowerCase() === humanMove.toLowerCase());
+    } 
     console.log("someone won");
    
 }

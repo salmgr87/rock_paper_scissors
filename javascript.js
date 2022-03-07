@@ -6,7 +6,8 @@ Rock, Paper, or Scissors.
 function computerPlay() {
     const moves = ["rock", "paper", "scissors"]
     const computerMove = Math.floor(Math.random()*3);
-    console.log(moves[computerMove]);
+    let finalMove = moves[computerMove];
+    return finalMove;
 }
 
 /*
@@ -18,14 +19,21 @@ If the round is a tie, then it runs computerPlay() and asks the player again
 */
 
 function playRound() {
+    let computerMove = computerPlay();
+    console.log(computerMove);
+    let humanMove = prompt("Rock, paper, or scissors?");
+    console.log(humanMove);
     
-    
-   do {
-        computerMove = compterPlay();
-        console.log(computerMove);
-        humanMove = prompt("Rock, paper, or scissors?")
+    if (computerMove === humanMove){
+        do {
+            computerMove = computerPlay();
+            console.log(computerMove);
+            humanMove = prompt("Rock, paper, or scissors?");
+        }
+        while (computerMove === humanMove);
     }
-   while (humanMove === computerMove)
+    console.log("someone won");
+   
 }
 
 playRound()

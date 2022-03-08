@@ -33,7 +33,7 @@ function playRound() {
     }
     
     /* Tiebreaker */
-    if (computerMove.toLowerCase() === humanMove.toLowerCase()){
+    if (computerMove === humanMove.toLowerCase()){
         do {
             computerMove = computerPlay();
             console.log(computerMove);
@@ -48,9 +48,25 @@ function playRound() {
             }
 
         }
-        while (computerMove.toLowerCase() === humanMove.toLowerCase());
+        while (computerMove === humanMove.toLowerCase());
     } 
-    console.log("someone won");
+
+    /* Declare the winner */
+
+    if ((humanMove.toLowerCase() === "rock") && (computerMove === "scissors")) {
+        console.log("You win! Rock beats scissors!");
+    } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "paper")) {
+        console.log("You win! Scissors beat paper!");
+    } else if ((humanMove.toLowerCase() === "paper") && (computerMove === "rock")) {
+        console.log("You win! Paper beats rock!");
+    } else if ((humanMove.toLowerCase() === "rock") && (computerMove === "paper")) {
+        console.log("You lose! Paper beats rock!");
+    } else if ((humanMove.toLowerCase() === "paper") && (computerMove === "scissors")) {
+        console.log("You lose! Scissors beat paper!");
+    } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "rock")) {
+            console.log("You lose! Rock beats scissors!");
+    }
+
    
 }
 

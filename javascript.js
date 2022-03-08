@@ -83,22 +83,29 @@ Report the score after each round?
 Report the winner at the end of 5 rounds
 */
 
+let humanScore = 0;
+let computerScore = 0;
+
 function game() {
     for (i = 0; i < 5; i++) {
-        let humanScore;
-        let computerScore;
         let result = playRound(prompt("Rock, paper, or scissors?"), computerPlay());
         if (result.includes("win")) {
-            console.log("You won the game!");
+            console.log("You won this round!");
             humanScore++;
+            console.log(`After round ${i+1}...`)
             console.log("Human score: " + humanScore);
             console.log("Computer score: " + computerScore);
         }
         if (result.includes("lose")) {
-            console.log("You lost the game!");
+            console.log("You lost this round!");
             computerScore++;
+            console.log(`After round ${i+1}...`)
             console.log("Human score: " + humanScore);
             console.log("Computer score: " + computerScore);
         }
+        
     }
 }
+
+
+game();

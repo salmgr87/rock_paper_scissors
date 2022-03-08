@@ -118,4 +118,4 @@ game();
 
 
 /* If I did this over, I would use more helper functions.
-e.g. a function that checks if the player chooses rock, paper, or scissors /*
+e.g. a function that checks if the player chooses rock, paper, or scissors */

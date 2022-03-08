@@ -23,12 +23,30 @@ function playRound() {
     console.log(computerMove);
     let humanMove = prompt("Rock, paper, or scissors?");
     console.log(humanMove);
+
+    /* Check to make sure human move is rock, paper, or scissors */
+    if ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors")) {
+        do {
+            humanMove = prompt("Not a valid selection. Please type rock, paper, or scissors.");
+        }
+        while ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors"));
+    }
     
+    /* Tiebreaker */
     if (computerMove.toLowerCase() === humanMove.toLowerCase()){
         do {
             computerMove = computerPlay();
             console.log(computerMove);
-            humanMove = prompt("Rock, paper, or scissors?");
+            humanMove = prompt("It's a tie. Choose again. Rock, paper, or scissors?");
+
+            /* Check to see if human move is rock, paper, or scissors */
+            if ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors")) {
+                do {
+                    humanMove = prompt("Not a valid selection. Please type rock, paper, or scissors.");
+                }
+                while ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors"));
+            }
+
         }
         while (computerMove.toLowerCase() === humanMove.toLowerCase());
     } 

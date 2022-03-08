@@ -70,10 +70,11 @@ function playRound(playerSelection, computerSelection) {
    
 }
 
-let result;
-result = console.log(playRound(prompt("Rock, paper, or scissors?"), computerPlay()));
+/*let result;
+result = playRound(prompt("Rock, paper, or scissors?"), computerPlay());
 result;
 if (result.includes("win")) {console.log("You won the game!")};
+if (result.includes("lose")) {console.log("You lost the game!")}; */
 
 /* The game() function should call playRound() 5 times.
 playRound should be changed to return the results, instead of console.log the results.
@@ -81,3 +82,23 @@ Use text.include(win) or lose to help tally the score.
 Report the score after each round?
 Report the winner at the end of 5 rounds
 */
+
+function game() {
+    for (i = 0; i < 5; i++) {
+        let humanScore;
+        let computerScore;
+        let result = playRound(prompt("Rock, paper, or scissors?"), computerPlay());
+        if (result.includes("win")) {
+            console.log("You won the game!");
+            humanScore++;
+            console.log("Human score: " + humanScore);
+            console.log("Computer score: " + computerScore);
+        }
+        if (result.includes("lose")) {
+            console.log("You lost the game!");
+            computerScore++;
+            console.log("Human score: " + humanScore);
+            console.log("Computer score: " + computerScore);
+        }
+    }
+}

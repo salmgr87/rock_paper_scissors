@@ -18,10 +18,10 @@ Then compares the two, and declares a winner.
 If the round is a tie, then it runs computerPlay() and asks the player again
 */
 
-function playRound() {
-    let computerMove = computerPlay();
+function playRound(playerSelection, computerSelection) {
+    let computerMove = computerSelection;
     console.log(computerMove);
-    let humanMove = prompt("Rock, paper, or scissors?");
+    let humanMove = playerSelection;
     console.log(humanMove);
 
     /* Check to make sure human move is rock, paper, or scissors */
@@ -51,8 +51,8 @@ function playRound() {
         while (computerMove === humanMove.toLowerCase());
     } 
 
-    /* Declare the winner */
 
+    /* Declare the winner */
     if ((humanMove.toLowerCase() === "rock") && (computerMove === "scissors")) {
         console.log("You win! Rock beats scissors!");
     } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "paper")) {
@@ -70,4 +70,4 @@ function playRound() {
    
 }
 
-playRound()
+playRound(prompt("Rock, paper, or scissors?"), computerPlay());

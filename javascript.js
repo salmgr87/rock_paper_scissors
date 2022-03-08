@@ -54,20 +54,30 @@ function playRound(playerSelection, computerSelection) {
 
     /* Declare the winner */
     if ((humanMove.toLowerCase() === "rock") && (computerMove === "scissors")) {
-        console.log("You win! Rock beats scissors!");
+        return "You win! Rock beats scissors!";
     } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "paper")) {
-        console.log("You win! Scissors beat paper!");
+        return "You win! Scissors beat paper!";
     } else if ((humanMove.toLowerCase() === "paper") && (computerMove === "rock")) {
-        console.log("You win! Paper beats rock!");
+        return "You win! Paper beats rock!";
     } else if ((humanMove.toLowerCase() === "rock") && (computerMove === "paper")) {
-        console.log("You lose! Paper beats rock!");
+        return "You lose! Paper beats rock!";
     } else if ((humanMove.toLowerCase() === "paper") && (computerMove === "scissors")) {
-        console.log("You lose! Scissors beat paper!");
+        return "You lose! Scissors beat paper!";
     } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "rock")) {
-            console.log("You lose! Rock beats scissors!");
+        return "You lose! Rock beats scissors!";
     }
 
    
 }
 
-playRound(prompt("Rock, paper, or scissors?"), computerPlay());
+let result;
+result = console.log(playRound(prompt("Rock, paper, or scissors?"), computerPlay()));
+result;
+if (result.includes("win")) {console.log("You won the game!")};
+
+/* The game() function should call playRound() 5 times.
+playRound should be changed to return the results, instead of console.log the results.
+Use text.include(win) or lose to help tally the score.
+Report the score after each round?
+Report the winner at the end of 5 rounds
+*/

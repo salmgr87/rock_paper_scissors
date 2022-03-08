@@ -105,6 +105,12 @@ function game() {
         }
         
     }
+    if (humanScore > computerScore) {
+        console.log(`Congratulations! You won with a score of ${humanScore} again the computer's score of ${computerScore}.`)
+    }
+    else if (computerScore > humanScore) {
+        console.log(`Sorry, you lost! The computer scored ${computerScore} against your score of ${humanScore}.`);
+    }
 }
 
 

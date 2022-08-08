@@ -36,5 +36,23 @@ function playGame(selection) {
         console.log("It's a tie. Play again.");
     } else if ((selection == 'rock' && computerMove == 'scissors') || (selection == 'paper' && computerMove == 'rock') || (selection == 'scissors' && computerMove == 'paper')) {
         console.log("You won this round");
-    } else {console.log("You lost this round")};
+        humanScore++;
+
+        const scores = document.createElement('div');
+        scores.classList.add('scores');
+        scores.textContent = `The player score is now: ${humanScore}`;
+        container.appendChild(scores);
+
+
+    } else {
+        console.log("You lost this round")
+        computerScore++;
+    };
+
+    if (humanScore == 5) {
+        console.log("Game over. Human wins");
+    }
+    if (computerScore == 5) {
+        console.log("Game over. Computer wins");
+    }
 }

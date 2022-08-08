@@ -40,19 +40,61 @@ function playGame(selection) {
 
         const scores = document.createElement('div');
         scores.classList.add('scores');
-        scores.textContent = `The player score is now: ${humanScore}`;
+        scores.textContent = `The score is now: human ${humanScore}, computer ${computerScore}`;
         container.appendChild(scores);
 
 
     } else {
         console.log("You lost this round")
         computerScore++;
+        const scores = document.createElement('div');
+        scores.classList.add('scores');
+        scores.textContent = `The score is now: human ${humanScore}, computer ${computerScore}`;
+        container.appendChild(scores);
     };
 
     if (humanScore == 5) {
         console.log("Game over. Human wins");
+        endGame();
     }
     if (computerScore == 5) {
         console.log("Game over. Computer wins");
+        endGame();
     }
 }
+
+function endGame() {
+    const ending = document.createElement('div');
+    ending.classList.add('ending');
+    if (humanScore == 5) {
+        ending.textContent = `The game is over! Human wins!`;
+        container.appendChild(ending);
+    } else {
+        ending.textContent = `The game is over! Computer wins!`;
+        container.appendChild(ending);
+    }
+    document.getElementById('rock').disabled = true;
+    document.getElementById('paper').disabled = true;
+    document.getElementById('scissors').disabled = true;
+  
+    const restart = document.createElement('button');
+    restart.classList.add('restart');
+    restart.textContent = 'Click me to play again!';
+    container.appendChild(restart);
+  
+    // This will clear everything when restarted
+    restartButton = document.getElementsByClassName('restart');
+    restartButton[0].addEventListener('click', function (e) {
+      console.log("Clear the dom tree.");
+      const list = document.getElementById('container');
+      while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+      }
+      //This will reset the buttons to click again
+      document.getElementById('rock').disabled = false;
+      document.getElementById('paper').disabled = false;
+      document.getElementById('scissors').disabled = false;
+      humanScore = 0;
+      computerScore = 0;
+    })
+  }

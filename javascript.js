@@ -30,10 +30,11 @@ function computerPlay() {
 
 function playGame(selection) {
     let computerMove = computerPlay();
-    console.log(`The computer played  ${computerMove}`);
-    if (selection == computerPlay()) {
+    console.log(`The human played ${selection}`);
+    console.log(`The computer played ${computerMove}`);
+    if (selection == computerMove) {
         console.log("It's a tie. Play again.");
     } else if ((selection == 'rock' && computerMove == 'scissors') || (selection == 'paper' && computerMove == 'rock') || (selection == 'scissors' && computerMove == 'paper')) {
         console.log("You won this round");
-    }
+    } else {console.log("You lost this round")};
 }

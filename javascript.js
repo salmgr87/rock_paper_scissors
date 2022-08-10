@@ -1,5 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
+let round = 0;
+let tieRound = false;
 
 const container = document.querySelector('#container');
 
@@ -34,23 +36,43 @@ function playGame(selection) {
     console.log(`The computer played ${computerMove}`);
     if (selection == computerMove) {
         console.log("It's a tie. Play again.");
+        const tie = document.createElement('div');
+        tie.classList.add('tie');
+        tie.textContent = `It's a tie. Choose again.`
+        container.appendChild(tie);
+        
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+
     } else if ((selection == 'rock' && computerMove == 'scissors') || (selection == 'paper' && computerMove == 'rock') || (selection == 'scissors' && computerMove == 'paper')) {
         console.log("You won this round");
         humanScore++;
+        round++;
 
         const scores = document.createElement('div');
         scores.classList.add('scores');
-        scores.textContent = `The score is now: human ${humanScore}, computer ${computerScore}`;
+        scores.textContent = `After round ${round}, the score is now: human ${humanScore}, computer ${computerScore}`;
         container.appendChild(scores);
+
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
 
 
     } else {
         console.log("You lost this round")
         computerScore++;
+        round++;
+
         const scores = document.createElement('div');
         scores.classList.add('scores');
-        scores.textContent = `The score is now: human ${humanScore}, computer ${computerScore}`;
+        scores.textContent = `After round ${round}, the score is now: human ${humanScore}, computer ${computerScore}`;
         container.appendChild(scores);
+
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
     };
 
     if (humanScore == 5) {
@@ -67,11 +89,21 @@ function endGame() {
     const ending = document.createElement('div');
     ending.classList.add('ending');
     if (humanScore == 5) {
-        ending.textContent = `The game is over! Human wins!`;
+        ending.textContent = `After round ${round}, the game is over! Human wins with 5!`;
         container.appendChild(ending);
+
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+
     } else {
-        ending.textContent = `The game is over! Computer wins!`;
+        ending.textContent = `After round ${round}, the game is over! Computer wins with 5!`;
         container.appendChild(ending);
+
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+
     }
     document.getElementById('rock').disabled = true;
     document.getElementById('paper').disabled = true;
@@ -96,5 +128,6 @@ function endGame() {
       document.getElementById('scissors').disabled = false;
       humanScore = 0;
       computerScore = 0;
+      round = 0;
     })
   }

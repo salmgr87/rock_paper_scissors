@@ -89,15 +89,15 @@ function endGame() {
     const ending = document.createElement('div');
     ending.classList.add('ending');
     if (humanScore == 5) {
-        ending.textContent = `After round ${round}, the game is over! Human wins with 5!`;
+        ending.textContent = `After round ${round}, the game is over! Human wins!`;
         container.appendChild(ending);
 
         const lineBreak = document.createElement('br');
         lineBreak. classList.add('lineBreak');
         container.appendChild(lineBreak);
 
-    } else {
-        ending.textContent = `After round ${round}, the game is over! Computer wins with 5!`;
+    } else if (computerScore ==5) {
+        ending.textContent = `After round ${round}, the game is over! Computer wins!`;
         container.appendChild(ending);
 
         const lineBreak = document.createElement('br');

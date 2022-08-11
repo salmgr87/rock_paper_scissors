@@ -3,10 +3,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: fantasy;
 }
 
 .gameZone {
     color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ending {
+    color: red;
     display: flex;
     flex-direction: column;
     align-items: center;

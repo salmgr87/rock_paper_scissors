@@ -1,0 +1,39 @@
+.gameStart {
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: fantasy;
+}
+
+.gameZone {
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ending {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tie {
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonZone {
+    display: flex;
+    align-content: space-around;
+}
+
+.buttons {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+}

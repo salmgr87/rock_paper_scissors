@@ -1,8 +1,27 @@
-/*
-computerPlay will be the fuction that determines what the computer's move is.
-I will generate a random number 0, 1, or 2, then use that to choose a word from the array containing
-Rock, Paper, or Scissors.
-*/
+let humanScore = 0;
+let computerScore = 0;
+let round = 0;
+let tieRound = false;
+
+const container = document.querySelector('#container');
+
+
+const rockClicked = document.querySelector('#rock');
+rockClicked.addEventListener('click', function (e) {
+    playGame('rock');
+});
+
+const paperClicked = document.querySelector('#paper');
+paperClicked.addEventListener('click', function (e) {
+    playGame('paper');
+});
+
+const scissorsClicked = document.querySelector('#scissors');
+scissorsClicked.addEventListener('click', function (e) {
+    playGame('scissors');
+});
+
+
 function computerPlay() {
     const moves = ["rock", "paper", "scissors"]
     const computerMove = Math.floor(Math.random()*3);
@@ -10,112 +29,105 @@ function computerPlay() {
     return finalMove;
 }
 
-/*
-playRound will play one round.
-It needs to call computerPlay()
-It needs to ask the player for their move.
-Then compares the two, and declares a winner.
-If the round is a tie, then it runs computerPlay() and asks the player again
-*/
 
-function playRound(playerSelection, computerSelection) {
-    let computerMove = computerSelection;
-    console.log(computerMove);
-    let humanMove = playerSelection;
-    console.log(humanMove);
-
-    /* Check to make sure human move is rock, paper, or scissors */
-    if ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors")) {
-        do {
-            humanMove = prompt("Not a valid selection. Please type rock, paper, or scissors.");
-        }
-        while ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors"));
-    }
-    
-    /* Tiebreaker */
-    if (computerMove === humanMove.toLowerCase()){
-        do {
-            computerMove = computerPlay();
-            console.log(computerMove);
-            humanMove = prompt("It's a tie. Choose again. Rock, paper, or scissors?");
-
-            /* Check to see if human move is rock, paper, or scissors */
-            if ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors")) {
-                do {
-                    humanMove = prompt("Not a valid selection. Please type rock, paper, or scissors.");
-                }
-                while ((humanMove.toLowerCase() !== "rock") && (humanMove.toLowerCase() !== "paper") && (humanMove.toLowerCase() !== "scissors"));
-            }
-
-        }
-        while (computerMove === humanMove.toLowerCase());
-    } 
-
-
-    /* Declare the winner */
-    if ((humanMove.toLowerCase() === "rock") && (computerMove === "scissors")) {
-        return "You win! Rock beats scissors!";
-    } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "paper")) {
-        return "You win! Scissors beat paper!";
-    } else if ((humanMove.toLowerCase() === "paper") && (computerMove === "rock")) {
-        return "You win! Paper beats rock!";
-    } else if ((humanMove.toLowerCase() === "rock") && (computerMove === "paper")) {
-        return "You lose! Paper beats rock!";
-    } else if ((humanMove.toLowerCase() === "paper") && (computerMove === "scissors")) {
-        return "You lose! Scissors beat paper!";
-    } else if ((humanMove.toLowerCase() === "scissors") && (computerMove === "rock")) {
-        return "You lose! Rock beats scissors!";
-    }
-
-   
-}
-
-/*let result;
-result = playRound(prompt("Rock, paper, or scissors?"), computerPlay());
-result;
-if (result.includes("win")) {console.log("You won the game!")};
-if (result.includes("lose")) {console.log("You lost the game!")}; */
-
-/* The game() function should call playRound() 5 times.
-playRound should be changed to return the results, instead of console.log the results.
-Use text.include(win) or lose to help tally the score.
-Report the score after each round?
-Report the winner at the end of 5 rounds
-*/
-
-let humanScore = 0;
-let computerScore = 0;
-
-function game() {
-    for (i = 0; i < 5; i++) {
-        let result = playRound(prompt("Rock, paper, or scissors?"), computerPlay());
-        if (result.includes("win")) {
-            console.log("You won this round!");
-            humanScore++;
-            console.log(`After round ${i+1}...`)
-            console.log("Human score: " + humanScore);
-            console.log("Computer score: " + computerScore);
-        }
-        if (result.includes("lose")) {
-            console.log("You lost this round!");
-            computerScore++;
-            console.log(`After round ${i+1}...`)
-            console.log("Human score: " + humanScore);
-            console.log("Computer score: " + computerScore);
-        }
+function playGame(selection) {
+    let computerMove = computerPlay();
+    console.log(`The human played ${selection}`);
+    console.log(`The computer played ${computerMove}`);
+    if (selection == computerMove) {
+        console.log("It's a tie. Play again.");
+        const tie = document.createElement('div');
+        tie.classList.add('tie');
+        tie.textContent = `It's a tie. Choose again.`
+        container.appendChild(tie);
         
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+
+    } else if ((selection == 'rock' && computerMove == 'scissors') || (selection == 'paper' && computerMove == 'rock') || (selection == 'scissors' && computerMove == 'paper')) {
+        console.log("You won this round");
+        humanScore++;
+        round++;
+
+        const scores = document.createElement('div');
+        scores.classList.add('scores');
+        scores.textContent = `After round ${round}, the score is now: human ${humanScore}, computer ${computerScore}`;
+        container.appendChild(scores);
+
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+
+
+    } else {
+        console.log("You lost this round")
+        computerScore++;
+        round++;
+
+        const scores = document.createElement('div');
+        scores.classList.add('scores');
+        scores.textContent = `After round ${round}, the score is now: human ${humanScore}, computer ${computerScore}`;
+        container.appendChild(scores);
+
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+    };
+
+    if (humanScore == 5) {
+        console.log("Game over. Human wins");
+        endGame();
     }
-    if (humanScore > computerScore) {
-        console.log(`Congratulations! You won with a score of ${humanScore} again the computer's score of ${computerScore}.`)
-    }
-    else if (computerScore > humanScore) {
-        console.log(`Sorry, you lost! The computer scored ${computerScore} against your score of ${humanScore}.`);
+    if (computerScore == 5) {
+        console.log("Game over. Computer wins");
+        endGame();
     }
 }
 
+function endGame() {
+    const ending = document.createElement('div');
+    ending.classList.add('ending');
+    if (humanScore == 5) {
+        ending.textContent = `After round ${round}, the game is over! Human wins!`;
+        container.appendChild(ending);
 
-game();
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
 
+    } else if (computerScore ==5) {
+        ending.textContent = `After round ${round}, the game is over! Computer wins!`;
+        container.appendChild(ending);
 
-/* If I did this over, I would use more helper functions.
-e.g. a function that checks if the player chooses rock, paper, or scissors */
+        const lineBreak = document.createElement('br');
+        lineBreak. classList.add('lineBreak');
+        container.appendChild(lineBreak);
+
+    }
+    document.getElementById('rock').disabled = true;
+    document.getElementById('paper').disabled = true;
+    document.getElementById('scissors').disabled = true;
+  
+    const restart = document.createElement('button');
+    restart.classList.add('restart');
+    restart.textContent = 'Click me to play again!';
+    container.appendChild(restart);
+  
+    // This will clear everything when restarted
+    restartButton = document.getElementsByClassName('restart');
+    restartButton[0].addEventListener('click', function (e) {
+      console.log("Clear the dom tree.");
+      const list = document.getElementById('container');
+      while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+      }
+      //This will reset the buttons to click again
+      document.getElementById('rock').disabled = false;
+      document.getElementById('paper').disabled = false;
+      document.getElementById('scissors').disabled = false;
+      humanScore = 0;
+      computerScore = 0;
+      round = 0;
+    })
+  }
